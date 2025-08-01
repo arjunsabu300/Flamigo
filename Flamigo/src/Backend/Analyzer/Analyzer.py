@@ -1,6 +1,3 @@
-import os
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'  # Suppress TensorFlow logs
-
 import json
 import random
 import numpy as np
@@ -11,6 +8,7 @@ import base64
 from io import BytesIO
 from PIL import Image
 
+# Quotes
 quotes = {
     "plant": [
         "Ah, the sunlight tastes divine today.",
@@ -19,11 +17,11 @@ quotes = {
     ],
     "not_plant": [
         "I am no plant, merely a bystander in chlorophyll's world.",
-        "This isn't a plant, it’s a poser in green.",
-        "My leaves are imaginary, like my hopes."
+        "This isn't a plant, it's a poser in green."
     ]
 }
 
+# Load model once
 model = MobileNetV2(weights='imagenet')
 
 def is_plant(preds):
@@ -38,10 +36,12 @@ def is_plant(preds):
     return False
 
 def main():
+    # Step 1: Read input JSON
     input_data = sys.stdin.read()
     data = json.loads(input_data)
-    img_data = data['image'].split(",")[1]
+    img_data = data['image'].split(",")[1]  # remove 'data:image/jpeg;base64,'
 
+    # Step 2: Decode image
     img_bytes = base64.b64decode(img_data)
     img = Image.open(BytesIO(img_bytes)).convert('RGB')
     img = img.resize((224, 224))
@@ -49,17 +49,17 @@ def main():
     img_array = np.expand_dims(img_array, axis=0)
     img_array = preprocess_input(img_array)
 
+    # Step 3: Predict
     preds = model.predict(img_array, verbose=0)
     decoded_preds = decode_predictions(preds, top=3)
 
+    # Step 4: Decide quote type
     category = "plant" if is_plant(decoded_preds) else "not_plant"
     translation = random.choice(quotes[category])
 
-    result = {
-        "mood": category,
-        "translation": translation
-    }
-    print(json.dumps(result))  # Only this gets printed
+    # Step 5: Output only one JSON string
+    result = translation
+    print(result)  # ONLY this line outputs to stdout
 
 if __name__ == "__main__":
     main()

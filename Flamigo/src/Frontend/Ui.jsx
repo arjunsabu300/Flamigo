@@ -35,8 +35,8 @@ function UI() {
                     image: base64Image,
                 });
 
-                console.log('Server response:', res.data);
-                setTranslation(res.data.translation);
+                console.log('Server response:', res.data); // now just a string
+                setTranslation(res.data); // ✅ this line updated
             } catch (error) {
                 console.error('Upload error:', error);
                 setTranslation("Couldn't understand your plant. Try again?");
@@ -64,8 +64,8 @@ function UI() {
                 image: imageData,
             });
 
-            console.log('Server response:', res.data.translation);
-            setTranslation(res.data.translation);
+            console.log('Server response:', res.data);
+            setTranslation(res.data);
         } catch (error) {
             console.error('Capture error:', error);
             setTranslation("Couldn't understand your plant. Try again?");
