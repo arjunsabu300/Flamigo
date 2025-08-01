@@ -1,6 +1,6 @@
 
 
-markdown
+
 # 🌿 FloraLingo
 
 **FloraLingo** is an interactive app that lets you capture or upload an image of a plant, translate its "vibe" into a fun quote, and even chat with it! If it’s not a plant, the app adapts its responses accordingly. Built using a Python-powered backend and a Node.js + React frontend, it integrates image classification, quote generation, and real-time AI chat.
@@ -143,4 +143,5 @@ http://localhost:5173
 * OpenAI + React for inspiration and implementation
 
 ---
+
 
