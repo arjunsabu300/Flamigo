@@ -1,17 +1,56 @@
 import React, { useRef, useState } from 'react';
 import './ui.css';
+import axios from 'axios';
 
 function UI() {
     const videoRef = useRef(null);
-    const [message, setMessage] = useState('');
+    const [translation, setTranslation] = useState('');
     const [loading, setLoading] = useState(false);
 
+    // Start camera
     const startCamera = async () => {
-        const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-        videoRef.current.srcObject = stream;
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+            if (videoRef.current) {
+                videoRef.current.srcObject = stream;
+            }
+        } catch (error) {
+            console.error('Error starting camera:', error);
+            setTranslation("Camera access failed. Try again.");
+        }
     };
 
+    // Handle file upload
+    const handleImageUpload = async (event) => {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onloadend = async () => {
+            const base64Image = reader.result;
+
+            try {
+                setLoading(true);
+                const res = await axios.post('http://localhost:5000/analyze', {
+                    image: base64Image,
+                });
+
+                console.log('Server response:', res.data);
+                setTranslation(res.data.translation);
+            } catch (error) {
+                console.error('Upload error:', error);
+                setTranslation("Couldn't understand your plant. Try again?");
+            } finally {
+                setLoading(false);
+            }
+        };
+        reader.readAsDataURL(file);
+    };
+
+    // Capture frame from video and send
     const captureAndSend = async () => {
+        if (!videoRef.current) return;
+
         const canvas = document.createElement('canvas');
         canvas.width = 400;
         canvas.height = 300;
@@ -19,16 +58,20 @@ function UI() {
         ctx.drawImage(videoRef.current, 0, 0, canvas.width, canvas.height);
         const imageData = canvas.toDataURL('image/jpeg');
 
-        setLoading(true);
-        const res = await fetch('http://localhost:5000/analyze', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ image: imageData })
-        });
+        try {
+            setLoading(true);
+            const res = await axios.post('http://localhost:5000/analyze', {
+                image: imageData,
+            });
 
-        const data = await res.json();
-        setMessage(data.translation);
-        setLoading(false);
+            console.log('Server response:', res.data.translation);
+            setTranslation(res.data.translation);
+        } catch (error) {
+            console.error('Capture error:', error);
+            setTranslation("Couldn't understand your plant. Try again?");
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -38,10 +81,14 @@ function UI() {
             <br />
             <button onClick={startCamera}>Start Camera</button>
             <button onClick={captureAndSend}>Translate My Plant</button>
-            {loading ? <p>Analyzing plant vibes...</p> : <p>{message}</p>}
+            <input type="file" accept="image/*" onChange={handleImageUpload} />
+            {loading ? (
+                <p>Analyzing plant vibes...</p>
+            ) : (
+                <p className="translation">{translation}</p>
+            )}
         </div>
     );
 }
 
 export default UI;
-
