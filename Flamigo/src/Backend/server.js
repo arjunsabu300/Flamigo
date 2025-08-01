@@ -7,7 +7,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(bodyParser.json({ limit: '10mb' }));
@@ -17,11 +17,7 @@ app.post('/analyze', (req, res) => {
     console.log("hiii")
 
     // Spawn Python script
-    const python = spawn(
-        'C:/Users/arjun/AppData/Local/Programs/Python/Python311/python.exe',
-        ['./Analyzer/Analyzer.py']
-    );
-
+    const python = spawn(process.env.PYTHON_PATH || 'python3', ['./Analyzer/Analyzer.py']);
     let result = '';
     let errorOutput = '';
 
