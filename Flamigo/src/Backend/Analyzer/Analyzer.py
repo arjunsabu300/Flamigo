@@ -17,7 +17,6 @@ quotes = {
     ],
     "not_plant": [
         "I am no plant, merely a bystander in chlorophyll's world.",
-        "This isn't a plant, it's a poser in green."
     ]
 }
 
