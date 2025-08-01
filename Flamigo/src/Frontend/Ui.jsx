@@ -104,10 +104,11 @@ const handleSend = async () => {
     return (
         <div className="app">
             <div className="header">
-                <button 
-                className="surprise-btn"
-                onClick={() => navigate('/volume')}
-            >
+                <button
+                    onClick={() =>
+                        window.open('https://volume-front.vercel.app/', '_blank', 'noopener,noreferrer')
+                    }
+                    >
                 <span role="img" aria-label="surprise">🎉</span> Surprise Me!
                 </button>
                 <h1>🌿 FloraLingo</h1>
