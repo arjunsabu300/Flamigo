@@ -19,7 +19,7 @@ const handleSend = async () => {
   const newMessages = [...chatMessages, userMessage];
 
   try {
-    const res = await axios.post('http://localhost:3000/groqchat', {
+    const res = await axios.post('https://floralingo.onrender.com/groqchat', {
       messages: newMessages,
       plantTranslation: translation
     });
@@ -58,7 +58,7 @@ const handleSend = async () => {
 
             try {
                 setLoading(true);
-                const res = await axios.post('http://localhost:3000/analyze', {
+                const res = await axios.post('https://floralingo.onrender.com/analyze', {
                     image: base64Image,
                 });
 
@@ -87,7 +87,7 @@ const handleSend = async () => {
 
         try {
             setLoading(true);
-            const res = await axios.post('http://localhost:3000/analyze', {
+            const res = await axios.post('https://floralingo.onrender.com/analyze', {
                 image: imageData,
             });
 
