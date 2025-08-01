@@ -104,7 +104,7 @@ const handleSend = async () => {
     return (
         <div className="app">
             <div className="header">
-                <button
+                <button className="surprise-btn"
                     onClick={() =>
                         window.open('https://volume-front.vercel.app/', '_blank', 'noopener,noreferrer')
                     }
