@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: floralingo-backend
+    env: node
+    rootDir: Flamigo/backend
+    buildCommand: |
+      pip install -r ./requirements.txt
+    startCommand: node server.js
+    envVars:
+      - key: GROQ_API_KEY
+        sync: false
+      - key: PYTHON_PATH
+        value: /usr/local/bin/python3  # Adjust if needed for your server environment
