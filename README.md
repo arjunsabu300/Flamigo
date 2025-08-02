@@ -168,15 +168,6 @@ Sure! Here's a dedicated section for:
 
 **FloraLingo** is a quirky and joyful web app that bridges the gap between plants and people! With AI-powered emotion analysis and NLP, FloraLingo interprets your typed messages and gives your plant a witty or mood-swing-laced response. It features both live camera-based interaction and an image upload system for sentiment-based response generation.
 
-#### 📁 Folder Structure (Simplified)
-
-FloraLingo/
-├── Flamigo/                 # Main GitHub repo folder
-│   ├── Frontend/           # React Frontend
-│   └── src/
-│       └── Backend/        # Node.js Backend
-│           └── Analyzer/   # Python ML model handler
-
 🔌 Major Features
 
 Chat-based interaction with AI-powered plant personality.
@@ -279,6 +270,7 @@ Made with ❤️ at TinkerHub Useless Projects
 
 ![Static Badge](https://img.shields.io/badge/TinkerHub-24?color=%23000000&link=https%3A%2F%2Fwww.tinkerhub.org%2F)
 ![Static Badge](https://img.shields.io/badge/UselessProjects--25-25?link=https%3A%2F%2Fwww.tinkerhub.org%2Fevents%2FQ2Q1TQKX6Q%2FUseless%2520Projects)
+
 
 
 
