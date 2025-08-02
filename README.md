@@ -251,19 +251,22 @@ Integration of Python ML model (via TensorFlow, NumPy, etc.) with Node.js backen
 
 ### Project Demo
 # Video
+https://drive.google.com/file/d/1fIZlavzk0Cpo_nkudcmDjkpGmOE4HdWy/view?usp=sharing
 
+✨ Explore the magic of FloraLingo live on the web!
+Click the link below to experience how plants can express emotions and respond through music 🎶💚
 
-# Additional Demos
-https://flora-lingo.vercel.app/
+🔗 FloraLingo Live Demo
 
 ## Team Contributions
-- [Arjun Sabu]: [Build FloraLingo]
-- [Adwaith Jayan]: [Build Hinge Based Volume Control]
+- [Arjun Sabu]: [Build FloraLingo and Hinge Based Volume Control ]
+- [Adwaith Jayan]: [Build Hinge Based Volume Control and FloraLingo]
 
 Made with ❤️ at TinkerHub Useless Projects 
 
 ![Static Badge](https://img.shields.io/badge/TinkerHub-24?color=%23000000&link=https%3A%2F%2Fwww.tinkerhub.org%2F)
 ![Static Badge](https://img.shields.io/badge/UselessProjects--25-25?link=https%3A%2F%2Fwww.tinkerhub.org%2Fevents%2FQ2Q1TQKX6Q%2FUseless%2520Projects)
+
 
 
 
